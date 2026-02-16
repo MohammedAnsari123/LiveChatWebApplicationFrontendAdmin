@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-dark text-zinc-300 font-sans antialiased;
+    }
+}
+
+@layer components {
+    .admin-card {
+        @apply bg-card border border-border rounded-xl shadow-sm;
+    }
+
+    .admin-input {
+        @apply bg-zinc-900 border border-zinc-700 text-white rounded-lg px-4 py-2 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-full transition-all;
+    }
+
+    .admin-btn-primary {
+        @apply bg-primary hover:bg-primary/90 text-white font-medium px-4 py-2 rounded-lg transition-colors shadow-lg shadow-primary/20;
+    }
+
+    .admin-table-header {
+        @apply px-6 py-3 text-left text-xs font-medium text-zinc-400 uppercase tracking-wider border-b border-border bg-zinc-900/50;
+    }
+
+    .admin-table-cell {
+        @apply px-6 py-4 whitespace-nowrap text-sm text-zinc-300 border-b border-border;
+    }
+}
+
+/* Custom Scrollbar for Admin */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+}

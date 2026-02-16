@@ -36,83 +36,83 @@ const UsersList = () => {
     };
 
     return (
-        <div className="flex min-h-screen bg-slate-950">
+        <div className="flex min-h-screen bg-dark">
             <Sidebar />
             <div className="flex-1 ml-64 p-8">
                 <header className="flex justify-between items-center mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-white">User Management</h1>
-                        <p className="text-slate-400 mt-2">Manage and view all registered users</p>
+                        <h1 className="text-3xl font-bold text-white tracking-tight">User Management</h1>
+                        <p className="text-zinc-400 mt-2">Manage and view all registered users</p>
                     </div>
                     {/* Search Bar */}
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 w-5 h-5" />
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-500 w-5 h-5" />
                         <input
                             type="text"
                             placeholder="Search users..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="bg-slate-800 text-white pl-10 pr-4 py-2 rounded-lg border border-slate-700 focus:outline-none focus:border-blue-500 w-64"
+                            className="bg-zinc-900 text-white pl-10 pr-4 py-2.5 rounded-lg border border-zinc-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 transition-all placeholder:text-zinc-600"
                         />
                     </div>
                 </header>
 
-                <div className="bg-slate-800 rounded-xl border border-slate-700 shadow-xl overflow-hidden">
+                <div className="admin-card overflow-hidden">
                     <div className="overflow-x-auto">
                         <table className="w-full text-left">
-                            <thead className="bg-slate-700/50">
+                            <thead>
                                 <tr>
-                                    <th className="p-4 text-slate-300 font-medium">User</th>
-                                    <th className="p-4 text-slate-300 font-medium">Email</th>
-                                    <th className="p-4 text-slate-300 font-medium">Role</th>
-                                    <th className="p-4 text-slate-300 font-medium">Status</th>
-                                    <th className="p-4 text-slate-300 font-medium">Actions</th>
+                                    <th className="admin-table-header">User</th>
+                                    <th className="admin-table-header">Email</th>
+                                    <th className="admin-table-header">Role</th>
+                                    <th className="admin-table-header">Status</th>
+                                    <th className="admin-table-header">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-slate-700">
+                            <tbody className="divide-y divide-border">
                                 {loading ? (
                                     <tr>
-                                        <td colSpan="5" className="p-8 text-center text-slate-400">Loading users...</td>
+                                        <td colSpan="5" className="p-8 text-center text-zinc-500">Loading users...</td>
                                     </tr>
                                 ) : users.length === 0 ? (
                                     <tr>
-                                        <td colSpan="5" className="p-8 text-center text-slate-400">No users found</td>
+                                        <td colSpan="5" className="p-8 text-center text-zinc-500">No users found</td>
                                     </tr>
                                 ) : (
                                     users.map((user) => (
-                                        <tr key={user._id} className="hover:bg-slate-700/30 transition-colors">
-                                            <td className="p-4">
+                                        <tr key={user._id} className="hover:bg-white/5 transition-colors">
+                                            <td className="admin-table-cell">
                                                 <div className="flex items-center gap-3">
                                                     <img
                                                         src={user.pic}
                                                         alt={user.name}
-                                                        className="w-10 h-10 rounded-full object-cover border-2 border-slate-600"
+                                                        className="w-10 h-10 rounded-full object-cover border border-zinc-600"
                                                     />
                                                     <span className="text-white font-medium">{user.name}</span>
                                                 </div>
                                             </td>
-                                            <td className="p-4 text-slate-300">{user.email}</td>
-                                            <td className="p-4">
+                                            <td className="admin-table-cell">{user.email}</td>
+                                            <td className="admin-table-cell">
                                                 {user.isAdmin ? (
-                                                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                                                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                                                         <Shield className="w-3 h-3" />
                                                         Admin
                                                     </span>
                                                 ) : (
-                                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                                                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
                                                         User
                                                     </span>
                                                 )}
                                             </td>
-                                            <td className="p-4">
-                                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">
+                                            <td className="admin-table-cell">
+                                                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-zinc-800 text-zinc-400 border border-zinc-700">
                                                     Active
                                                 </span>
                                             </td>
-                                            <td className="p-4">
+                                            <td className="admin-table-cell">
                                                 <button
                                                     onClick={() => handleDelete(user._id)}
-                                                    className="text-slate-400 hover:text-red-400 transition-colors">
+                                                    className="text-zinc-400 hover:text-red-400 hover:bg-red-400/10 p-2 rounded-lg transition-colors">
                                                     <Trash2 className="w-5 h-5" />
                                                 </button>
                                             </td>

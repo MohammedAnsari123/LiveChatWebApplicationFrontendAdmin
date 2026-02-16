@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-    baseURL: 'https://modrenlivechatwebapplicationbackend.onrender.com/api',
+    baseURL: `${import.meta.env.VITE_BACKEND_URL}/api`,
 });
 
 API.interceptors.request.use((req) => {
